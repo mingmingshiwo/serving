@@ -54,6 +54,9 @@ limitations under the License.
 #include "tensorflow_serving/model_servers/version.h"
 
 int main(int argc, char** argv) {
+  TF_Status status = TF_NewStatus();
+  TF_LoadLibrary("_trt_engine_op.so", status);
+  
   tensorflow::serving::main::Server::Options options;
   bool display_version = false;
   std::vector<tensorflow::Flag> flag_list = {
